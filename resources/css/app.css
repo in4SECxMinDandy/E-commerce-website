@@ -1,0 +1,10 @@
+/*
+ * File frontend: resources/css/app.css
+ * Chuc nang: Tep CSS co ban cua scaffold Tailwind/Breeze.
+ * Vai tro: Nap ba lop @tailwind base, components va utilities cho cac view van con dung he component Tailwind.
+ * Luu y: File nay song song voi app.scss vi du an dang trong giai doan chuyen doi giao dien.
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+

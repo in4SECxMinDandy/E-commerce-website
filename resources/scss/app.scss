@@ -1,0 +1,71 @@
+/*
+ * File frontend: resources/scss/app.scss
+ * Chuc nang: Tep SCSS chinh cua giao dien Bootstrap cho Universal Tea.
+ * Vai tro: Khai bao bien theme, import Bootstrap SCSS va bo sung style rieng cho body, hero, khung chat, bong bong chat va shell admin.
+ * Tac dung giao dien: Day la noi trung tam quy dinh mau sac, bo cuc va cam quan hinh anh cua cac trang cong khai/admin moi.
+ */
+$primary: #1f4d3f;
+$dark: #10281f;
+$body-bg: #f5f1ea;
+$body-color: #1d1d1d;
+$font-family-sans-serif: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$border-radius: 1rem;
+$border-radius-lg: 1.5rem;
+
+@import "bootstrap/scss/bootstrap";
+
+:root {
+    color-scheme: light;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(222, 192, 144, 0.45), transparent 35%),
+        linear-gradient(180deg, #fcfaf6 0%, #f5f1ea 100%);
+    min-height: 100vh;
+}
+
+.tracking-wide {
+    letter-spacing: 0.14em;
+}
+
+.hero-card {
+    background:
+        linear-gradient(135deg, rgba(16, 40, 31, 0.95), rgba(31, 77, 63, 0.88)),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 30%);
+    color: #fff;
+}
+
+.chat-thread {
+    background-color: rgba(255, 255, 255, 0.75);
+    min-height: 380px;
+    max-height: 65vh;
+    overflow-y: auto;
+}
+
+.chat-bubble {
+    border-radius: 1rem;
+    max-width: 85%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.chat-bubble-user {
+    background: #fff;
+    border: 1px solid rgba(16, 40, 31, 0.08);
+}
+
+.chat-bubble-admin {
+    background: #10281f;
+    color: #fff;
+    margin-left: auto;
+}
+
+.chat-bubble-admin .text-secondary {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.admin-shell .nav-link:hover {
+    color: $dark !important;
+}
+
