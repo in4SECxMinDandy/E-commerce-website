@@ -8,7 +8,7 @@
 
 Dự án E-commerce chuyên nghiệp xây dựng bằng **Laravel 11**, **Blade**, và **Bootstrap 5.3**, tích hợp hệ thống **Realtime** (thời gian thực) bằng Laravel Reverb. 
 
-Dự án mô phỏng một cửa hàng trà sữa/thức uống trực tuyến (Universal Tea) với đầy đủ các tính năng dành cho khách hàng và bộ phân quản trị.
+Dự án mô phỏng một cửa hàng trà sữa/thức uống trực tuyến với đầy đủ các tính năng dành cho khách hàng và bộ phân quản trị.
 
 ---
 
