@@ -1,4 +1,4 @@
-{--
+{{--
     File frontend: chat/index.blade.php
     Chuc nang: Man hinh chat chinh phia nguoi dung/khach, render lich su tin nhan, form gui noi dung va upload anh.
     Vai tro giao dien: Ket noi session chat voi backend qua data-attribute de phuc vu fetch, polling fallback va realtime qua Echo.
@@ -21,7 +21,7 @@
                     <div>
                         <div class="small text-secondary">Chat session #{{ $chatSession->id }}</div>
                         <div class="fw-semibold">
-                            {{ $guestName ?: auth()->user()?->full_name ?: 'KhÃ¡ch hÃ ng' }}
+                            {{ $guestName ?: auth()->user()?->full_name ?: 'Khách hàng' }}
                         </div>
                     </div>
                     <span class="badge text-bg-{{ $chatSession->status->value === 'open' ? 'success' : 'secondary' }}" data-chat-status>
@@ -43,20 +43,20 @@
                                 <div class="small text-secondary mt-2">{{ optional($message->created_at)->format('d/m/Y H:i') }}</div>
                             </div>
                         @empty
-                            <div class="text-secondary">ChÆ°a cÃ³ tin nháº¯n nÃ o. HÃ£y gá»­i tin Ä‘áº§u tiÃªn.</div>
+                            <div class="text-secondary">Chưa có tin nhắn nào. Hãy gửi tin đầu tiên.</div>
                         @endforelse
                     </div>
 
                     <form class="vstack gap-3" data-chat-form>
                         <div>
-                            <label class="form-label" for="chat_content">Ná»™i dung</label>
-                            <textarea class="form-control" id="chat_content" rows="3" placeholder="Nháº­p tin nháº¯n..."></textarea>
+                            <label class="form-label" for="chat_content">Nội dung</label>
+                            <textarea class="form-control" id="chat_content" rows="3" placeholder="Nhập tin nhắn..."></textarea>
                         </div>
                         <div>
-                            <label class="form-label" for="chat_image">áº¢nh Ä‘Ã­nh kÃ¨m</label>
+                            <label class="form-label" for="chat_image">Ảnh đính kèm</label>
                             <input class="form-control" id="chat_image" type="file" accept="image/*">
                         </div>
-                        <button class="btn btn-dark align-self-start" type="submit">Gá»­i tin nháº¯n</button>
+                        <button class="btn btn-dark align-self-start" type="submit">Gửi tin nhắn</button>
                     </form>
                 </div>
             </div>
@@ -80,14 +80,14 @@
             const statusBadge = root.querySelector('[data-chat-status]');
             const sessionId = root.dataset.sessionId;
             const channelName = root.dataset.channel;
-            const emptyMessage = 'ChÆ°a cÃ³ tin nháº¯n nÃ o. HÃ£y gá»­i tin Ä‘áº§u tiÃªn.';
+            const emptyMessage = 'Chưa có tin nhắn nào. Hãy gửi tin đầu tiên.';
 
             const updateStatus = (status) => {
                 statusBadge.textContent = String(status).toUpperCase();
                 statusBadge.className = `badge ${status === 'open' ? 'text-bg-success' : 'text-bg-secondary'}`;
             };
 
-            const disableChat = (message = 'PhiÃªn chat Ä‘Ã£ háº¿t háº¡n hoáº·c bá»‹ vÃ´ hiá»‡u hÃ³a.') => {
+            const disableChat = (message = 'Phiên chat đã hết hạn hoặc bị vô hiệu hóa.') => {
                 updateStatus('closed');
                 textarea.disabled = true;
                 fileInput.disabled = true;

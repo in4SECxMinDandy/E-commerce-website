@@ -105,10 +105,44 @@
                             window.location.reload();
                         });
 
+                        const reloadChatUI = async () => {
+                            try {
+                                const response = await fetch(window.location.href, {
+                                    headers: {
+                                        'X-Requested-With': 'XMLHttpRequest',
+                                        'Accept': 'text/html'
+                                    }
+                                });
+                                if (!response.ok) return;
+
+                                const html = await response.text();
+                                const parser = new DOMParser();
+                                const doc = parser.parseFromString(html, 'text/html');
+
+                                const newMessages = doc.querySelector('[data-chat-messages]');
+                                const currentMessages = root.querySelector('[data-chat-messages]');
+                                if (newMessages && currentMessages) {
+                                    const isScrolledToBottom = currentMessages.scrollHeight - currentMessages.clientHeight <= currentMessages.scrollTop + 50;
+                                    currentMessages.innerHTML = newMessages.innerHTML;
+                                    if (isScrolledToBottom) {
+                                        currentMessages.scrollTop = currentMessages.scrollHeight;
+                                    }
+                                }
+
+                                const newList = doc.querySelector('.list-group');
+                                const currentList = document.querySelector('.list-group');
+                                if (newList && currentList) {
+                                    currentList.innerHTML = newList.innerHTML;
+                                }
+                            } catch (e) {
+                                window.location.reload();
+                            }
+                        };
+
                         if (window.Echo) {
                             window.Echo.channel(root.dataset.channel)
-                                .listen('.chat.message.created', () => window.location.reload())
-                                .listen('.chat.session.status', () => window.location.reload());
+                                .listen('.chat.message.created', reloadChatUI)
+                                .listen('.chat.session.status', reloadChatUI);
                         }
                     });
                 </script>
